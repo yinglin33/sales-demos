@@ -1,67 +1,90 @@
 'use client'
 
-import React, { useState } from "react"
-import CustomQuoteDemo from "./CustomQuoteDemo"
-import PhotoQuoteDemo from "./PhotoQuoteDemo"
+import Link from 'next/link'
+import { useState } from 'react'
 
-type TabType = "custom" | "photo"
+export default function Home() {
+    const [submitted, setSubmitted] = useState(false)
+    const [form, setForm] = useState({
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        origin: '',
+        destination: ''
+    })
 
-export default function DemosPage(): JSX.Element {
-    const [activeTab, setActiveTab] = useState<TabType>("custom")
-
+    const submit = (e: React.FormEvent) => {
+        e.preventDefault()
+        setSubmitted(true)
+    }
     return (
-        <div className="min-h-screen p-6 sm:p-8">
-            <header className="text-center pt-8 pb-8 animate-fade-in-up">
-                <div className="inline-block mb-3">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-sky-500 rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-4 animate-pulse-glow">
-                        <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
+        <div className="min-h-[70vh] px-4 py-16 max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-4">Trusted Home Services</h1>
+            <p className="text-slate-600 mb-8">Cleaning, moving, handyman, and more — reliable pros for every job.</p>
+            <div className="flex items-center justify-center gap-3 mb-12">
+                <Link href="/configure" className="px-6 py-3 rounded-md bg-sky-600 text-white hover:bg-sky-700">Schedule</Link>
+                <Link href="#services" className="px-6 py-3 rounded-md border border-slate-300 text-slate-700 hover:bg-slate-50">See Services</Link>
+            </div>
+
+            <section id="services" className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left mt-6">
+                <div className="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 className="font-semibold mb-1">Cleaning</h3>
+                    <p className="text-sm text-slate-600">Deep cleans, recurring, move-in/out.</p>
                 </div>
-                <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent mb-3">
-                    Diploy Beta
-                </h1>
-                <p className="text-lg text-slate-600 font-medium">Modern AI-Powered Sales Platform</p>
-            </header>
+                <div className="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 className="font-semibold mb-1">Moving</h3>
+                    <p className="text-sm text-slate-600">Local moves, packing, furniture.</p>
+                </div>
+                <div className="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 className="font-semibold mb-1">Handyman</h3>
+                    <p className="text-sm text-slate-600">Repairs, mounting, small projects.</p>
+                </div>
+            </section>
 
-            <div className="flex justify-center gap-4 mb-8 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
-                <button
-                    className={`px-8 py-3.5 text-base font-semibold rounded-2xl transition-all duration-300 transform ${
-                        activeTab === "custom"
-                            ? "bg-gradient-to-r from-blue-500 to-sky-500 text-white shadow-xl shadow-blue-500/30 scale-105"
-                            : "bg-white/80 backdrop-blur-sm text-slate-700 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-white"
-                    }`}
-                    onClick={() => setActiveTab("custom")}
-                >
-                    <span className="flex items-center gap-2">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                        </svg>
-                        Custom Quote Builder
-                    </span>
-                </button>
-                <button
-                    className={`px-8 py-3.5 text-base font-semibold rounded-2xl transition-all duration-300 transform ${
-                        activeTab === "photo"
-                            ? "bg-gradient-to-r from-blue-500 to-sky-500 text-white shadow-xl shadow-blue-500/30 scale-105"
-                            : "bg-white/80 backdrop-blur-sm text-slate-700 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-white"
-                    }`}
-                    onClick={() => setActiveTab("photo")}
-                >
-                    <span className="flex items-center gap-2">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        Photo Quote
-                    </span>
-                </button>
+            <div className="mt-12">
+                <Link href="/configure" className="px-6 py-3 rounded-md bg-sky-600 text-white hover:bg-sky-700">Schedule</Link>
             </div>
 
-            <div className="animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
-                {activeTab === "custom" && <CustomQuoteDemo />}
-                {activeTab === "photo" && <PhotoQuoteDemo />}
-            </div>
+            <section className="mt-16 text-left">
+                <h2 className="text-2xl font-semibold text-slate-800 mb-4">Get a Quote</h2>
+                {!submitted ? (
+                    <form onSubmit={submit} className="bg-white rounded-lg border border-slate-200 p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1">First Name</label>
+                            <input value={form.firstName} onChange={(e)=>setForm({...form, firstName: e.target.value})} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="First Name" />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1">Last Name</label>
+                            <input value={form.lastName} onChange={(e)=>setForm({...form, lastName: e.target.value})} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="Last Name" />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
+                            <input value={form.phone} onChange={(e)=>setForm({...form, phone: e.target.value})} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="(555) 123-4567" />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                            <input value={form.email} onChange={(e)=>setForm({...form, email: e.target.value})} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="you@email.com" />
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label className="block text-sm font-medium text-slate-700 mb-1">Initial Address</label>
+                            <input value={form.origin} onChange={(e)=>setForm({...form, origin: e.target.value})} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="Start address" />
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label className="block text-sm font-medium text-slate-700 mb-1">Final Address</label>
+                            <input value={form.destination} onChange={(e)=>setForm({...form, destination: e.target.value})} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="End address" />
+                        </div>
+                        <div className="sm:col-span-2 flex justify-end">
+                            <button type="submit" className="px-6 py-2 rounded-md bg-sky-600 text-white hover:bg-sky-700">Submit</button>
+                        </div>
+                    </form>
+                ) : (
+                    <div className="bg-white rounded-lg border border-slate-200 p-6 text-center">
+                        <h3 className="text-xl font-semibold text-slate-800 mb-2">Thanks for your interest!</h3>
+                        <p className="text-slate-600">We received your info and will reach out shortly.</p>
+                    </div>
+                )}
+            </section>
         </div>
     )
 }
