@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Script id="google-maps" strategy="afterInteractive" src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY ?? process.env.GOOGLE_API_KEY ?? 'AIzaSyDrGa30JYdf3woua4KvRoyDNY1Juq6AAtE'}&libraries=places`}></Script>
+        <Script id="google-maps" strategy="afterInteractive" src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY ?? process.env.GOOGLE_API_KEY}&libraries=places`}></Script>
         <header className="bg-white/90 backdrop-blur border-b border-slate-200">
           <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
             <Link href="/" className="font-semibold text-slate-800">Home Services Co</Link>
