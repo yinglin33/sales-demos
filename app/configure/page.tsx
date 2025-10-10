@@ -6,7 +6,7 @@ import PhotoQuoteDemo from "../PhotoQuoteDemo"
 
 type TabType = "custom" | "photo"
 
-export default function DemosPage(): JSX.Element {
+export default function DemosPage() {
     const [activeTab, setActiveTab] = useState<TabType>("custom")
 
     return (
